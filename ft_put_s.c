@@ -1,29 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_memcpy.c                                        :+:      :+:    :+:   */
+/*   ft_put_s.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: Karrar <kahamza@student.42wolfsburg.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/12/13 03:37:57 by Karrar            #+#    #+#             */
-/*   Updated: 2022/12/31 05:34:31 by Karrar           ###   ########.fr       */
+/*   Created: 2023/01/21 22:30:41 by Karrar            #+#    #+#             */
+/*   Updated: 2023/01/22 23:24:31 by Karrar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
-#include <string.h>
+#include "ft_printf.h"
 
-void	*ft_memcpy(void *dest, const void *src, size_t n)
+int	ft_put_s(char *str)
 {
-	size_t	i;
+	int	i;
 
+	if (!str)
+		return (ft_put_s(S_EMPTY));
 	i = 0;
-	if (!dest && !src)
-		return (NULL);
-	while (i < n)
+	while (str[i])
 	{
-		((char *)dest)[i] = ((char *)src)[i];
+		ft_put_c(str[i]);
 		i++;
 	}
-	return (dest);
+	return (i);
 }

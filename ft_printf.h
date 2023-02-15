@@ -5,24 +5,16 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: Karrar <kahamza@student.42wolfsburg.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/01/06 04:37:58 by Karrar            #+#    #+#             */
-/*   Updated: 2023/01/20 22:25:46 by Karrar           ###   ########.fr       */
+/*   Created: 2023/01/21 21:57:26 by Karrar            #+#    #+#             */
+/*   Updated: 2023/02/14 16:08:36 by Karrar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FT_PRINTF_H
 # define FT_PRINTF_H
-# include "libft.h"
+
 # include <stdarg.h>
-
-typedef struct	s_data
-{
-	size_t	len;
-	size_t	i;
-	char	*curr;
-	char	*dest;
-}		t_data;
-
+# include <unistd.h>
 # ifdef __linux__
 #  define IS_LINUX 1
 #  define OS "LINUX"
@@ -39,18 +31,12 @@ typedef struct	s_data
 #  define P_EMPTY_L 3
 # endif
 
+int		ft_put_c(char c);
+int		ft_put_s(char *str);
+int		ft_put_i(long nb);
+int		ft_put_u(unsigned int nb);
+int		ft_put_x(unsigned long nb, char c);
+int		ft_put_p(unsigned long ptr);
+char	ft_istype(char a);
 int		ft_printf(const char *str, ...);
-int		ft_istype(char *str);
-char	*ft_char_to_str(char c);
-char	*ft_utoa(unsigned int n);
-char	*ft_utohexa(size_t nb, char c);
-char	*ft_mem_cat(char *dest, char *curr);
-char	*ft_convert_c(va_list ap);
-char	*ft_convert_s(va_list ap);
-char	*ft_convert_p(va_list ap);
-char	*ft_convert_i(va_list ap);
-char	*ft_convert_u(va_list ap);
-char	*ft_convert_x(va_list ap);
-char	*ft_convert_X(va_list ap);
-t_data	*ft_set_t_data(t_data *db);
 #endif

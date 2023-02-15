@@ -1,36 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strncmp.c                                       :+:      :+:    :+:   */
+/*   ft_put_x.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: Karrar <kahamza@student.42wolfsburg.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/12/10 21:19:19 by Karrar            #+#    #+#             */
-/*   Updated: 2022/12/30 01:35:56 by Karrar           ###   ########.fr       */
+/*   Created: 2023/01/21 23:11:04 by Karrar            #+#    #+#             */
+/*   Updated: 2023/01/22 23:24:11 by Karrar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
-#include <string.h>
+#include "ft_printf.h"
 
-int	ft_strncmp(const char *s1, const char *s2, size_t n)
+int	ft_put_x(unsigned long nb, char c)
 {
-	size_t			i;
-	unsigned char	*cs1;
-	unsigned char	*cs2;
+	char	*base;
+	int		count;
 
-	if (n == 0)
-		return (0);
-	cs1 = (unsigned char *)s1;
-	cs2 = (unsigned char *)s2;
-	i = 0;
-	while (cs1[i] != '\0' && cs2[i] != '\0' && i < n - 1)
+	count = 0;
+	if (c == 'x')
+		base = "0123456789abcdef";
+	else
+		base = "0123456789ABCDEF";
+	if (nb < 16)
+		count += ft_put_c(base[nb]);
+	else
 	{
-		if (cs1[i] != cs2[i])
-		{
-			return (cs1[i] - cs2[i]);
-		}
-		i++;
+		count += ft_put_x(nb / 16, c);
+		count += ft_put_x(nb % 16, c);
 	}
-	return (cs1[i] - cs2[i]);
+	return (count);
 }

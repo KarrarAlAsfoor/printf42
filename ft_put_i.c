@@ -1,25 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_set_t_data.c                                    :+:      :+:    :+:   */
+/*   ft_put_i.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: Karrar <kahamza@student.42wolfsburg.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/01/18 19:50:24 by Karrar            #+#    #+#             */
-/*   Updated: 2023/01/19 12:19:20 by Karrar           ###   ########.fr       */
+/*   Created: 2023/01/21 22:46:31 by Karrar            #+#    #+#             */
+/*   Updated: 2023/01/22 23:22:41 by Karrar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-t_data	*ft_set_t_data(t_data *db)
+int	ft_put_i(long nb)
 {
-	db = malloc(sizeof(t_data));
-	if (db == NULL)
-		return (NULL);
-	db->len = 0;
-	db->i = 0;
-	db->curr = NULL;
-	db->dest = NULL;
-	return (db);
+	int	count;
+
+	count = 0;
+	if (nb < 0)
+	{
+		nb *= -1;
+		count += ft_put_c('-');
+	}
+	if (nb < 10)
+	{
+		count += ft_put_c(nb + '0');
+	}
+	else
+	{
+		count += ft_put_i(nb / 10);
+		count += ft_put_i(nb % 10);
+	}
+	return (count);
 }

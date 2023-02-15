@@ -1,27 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_memset.c                                        :+:      :+:    :+:   */
+/*   ft_put_u.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: Karrar <kahamza@student.42wolfsburg.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/11/24 01:19:41 by Karrar            #+#    #+#             */
-/*   Updated: 2022/12/13 03:30:25 by Karrar           ###   ########.fr       */
+/*   Created: 2023/01/21 23:01:24 by Karrar            #+#    #+#             */
+/*   Updated: 2023/01/22 23:21:54 by Karrar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdlib.h>
-#include "libft.h"
+#include "ft_printf.h"
 
-void	*ft_memset(void *s, int c, size_t n)
+int	ft_put_u(unsigned int nb)
 {
-	size_t	i;
+	int	count;
 
-	i = 0;
-	while (i < n)
+	count = 0;
+	if (nb < 10)
 	{
-		((char *)s)[i] = (unsigned char) c;
-		i++;
+		count += ft_put_c(nb + '0');
 	}
-	return (s);
+	else
+	{
+		count += ft_put_u(nb / 10);
+		count += ft_put_u(nb % 10);
+	}
+	return (count);
 }
